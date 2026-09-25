@@ -53,6 +53,8 @@ func ReleaseAnnotationRemove(obj client.Object) {
 	annotationRemove(obj, ReleaseAnnotation)
 }
 
+// TriggerRequestReconcileAnnotation applies a concurrent-safe retry guard before patching.
+// The retry loop ensures the annotation update survives concurrent reconciler writes.
 func TriggerRequestReconcileAnnotation(
 	ctx context.Context,
 	c client.Client,
